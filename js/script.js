@@ -231,17 +231,35 @@ const anchors = document.querySelectorAll('a[href*="#"]');
 for (let anchor of anchors) {
 	anchor.addEventListener('click', function (event) {
 		event.preventDefault();
-		const blockId = anchor.getAttribute('href');
-		if (anchor.innerHTML == 'FRIENDS' || anchor.innerHTML == 'CONTACT') {
-			document.querySelector('' + blockId).scrollIntoView({
-				behavior: "smooth",
-				block: "start",
-			});
+
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+			setTimeout(function () {
+				const blockId = anchor.getAttribute('href');
+				if (anchor.innerHTML == 'FRIENDS' || anchor.innerHTML == 'CONTACT') {
+					document.querySelector('' + blockId).scrollIntoView({
+						behavior: "smooth",
+						block: "start",
+					});
+				} else {
+					document.querySelector('' + blockId).scrollIntoView({
+						behavior: "smooth",
+						block: "center",
+					});
+				}
+			}, 700);
 		} else {
-			document.querySelector('' + blockId).scrollIntoView({
-				behavior: "smooth",
-				block: "center",
-			});
+			const blockId = anchor.getAttribute('href');
+			if (anchor.innerHTML == 'FRIENDS' || anchor.innerHTML == 'CONTACT') {
+				document.querySelector('' + blockId).scrollIntoView({
+					behavior: "smooth",
+					block: "start",
+				});
+			} else {
+				document.querySelector('' + blockId).scrollIntoView({
+					behavior: "smooth",
+					block: "center",
+				});
+			}
 		}
 	});
 };
@@ -302,5 +320,21 @@ for (let anchor of anchors) {
 	function phoneTest(input) {
 		return !/^\d[\d\(\)\ -]{4,14}\d$/.test(input.value);
 	}
+
+
+	////При клике на icon бургера +класс для иконки и body выезжающего меню
+const iconMenu = document.querySelector('.burger-icon');
+const menuBody = document.querySelector('.header__btm');
+function toggleMenuClases() {
+	iconMenu.classList.toggle('_active');
+	menuBody.classList.toggle('_active');
+	document.body.classList.toggle('_lock');
+}
+iconMenu.addEventListener('click', toggleMenuClases);
+menuBody.addEventListener('click', function (event) {
+	let target = event.target.closest('li');
+	if (!target) return;
+	toggleMenuClases();
+});
 })
 
