@@ -176,6 +176,8 @@ body._lock {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  position: relative;
+  z-index: 3;
 }
 
 .header__languages {
@@ -192,8 +194,6 @@ body._lock {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #000;
-  position: relative;
-  z-index: 3;
 }
 
 .header__languages li {
@@ -290,6 +290,7 @@ body._lock {
 }
 
 .burger-icon {
+  display: block;
   margin-left: 25px;
   height: 25px;
   width: 30px;
@@ -813,6 +814,10 @@ body._lock {
 }
 
 @media (max-width: 768px) {
+  .header {
+    padding: 20px 0;
+  }
+
   .contact__body {
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -831,9 +836,9 @@ body._lock {
     -o-transition: all 0.7s ease-in-out;
     transition: all 0.7s ease-in-out;
     position: absolute;
-    top: 90px;
+    top: 70px;
     left: 0;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 70px);
     width: 100%;
     background-color: rgba(255, 235, 198, 0.9);
     padding-top: 15px;

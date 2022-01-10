@@ -225,8 +225,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 	buttonAnim();
 
-	//если у всех элементов будет общий предок - юзать дилегирование событий
-const anchors = document.querySelectorAll('a[href*="#"]');
+	const anchors = document.querySelectorAll('a[href*="#"]');
 
 for (let anchor of anchors) {
 	anchor.addEventListener('click', function (event) {
@@ -263,6 +262,23 @@ for (let anchor of anchors) {
 		}
 	});
 };
+	//При клике на icon бургера +класс для иконки и body выезжающего меню
+const iconMenu = document.querySelector('.burger-icon');
+const menuBody = document.querySelector('.header__btm');
+function toggleMenuClases() {
+	iconMenu.classList.toggle('_active');
+	menuBody.classList.toggle('_active');
+	document.body.classList.toggle('_lock');
+}
+if (window.getComputedStyle(iconMenu).display == 'block') {
+	iconMenu.addEventListener('click', toggleMenuClases);
+	menuBody.addEventListener('click', function (event) {
+		let target = event.target.closest('li');
+		if (!target) return;
+		toggleMenuClases();
+	});
+};
+
 
 	//Простенькая валидация полей формы
 	let formBtn = document.querySelector('form button');
@@ -320,21 +336,5 @@ for (let anchor of anchors) {
 	function phoneTest(input) {
 		return !/^\d[\d\(\)\ -]{4,14}\d$/.test(input.value);
 	}
-
-
-	////При клике на icon бургера +класс для иконки и body выезжающего меню
-const iconMenu = document.querySelector('.burger-icon');
-const menuBody = document.querySelector('.header__btm');
-function toggleMenuClases() {
-	iconMenu.classList.toggle('_active');
-	menuBody.classList.toggle('_active');
-	document.body.classList.toggle('_lock');
-}
-iconMenu.addEventListener('click', toggleMenuClases);
-menuBody.addEventListener('click', function (event) {
-	let target = event.target.closest('li');
-	if (!target) return;
-	toggleMenuClases();
-});
 })
 
