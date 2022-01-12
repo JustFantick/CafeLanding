@@ -295,7 +295,8 @@ body._lock {
   height: 25px;
   width: 30px;
   border-bottom: solid gray;
-  border-top: solid gray;
+  border-bottom-width: 2px;
+  border-top: 2px solid gray;
   position: relative;
   z-index: 3;
 }
@@ -309,7 +310,7 @@ body._lock {
   -ms-transform: translate(0, -50%);
   transform: translate(0, -50%);
   width: 30px;
-  height: 2px;
+  height: 1px;
   background-color: gray;
 }
 
@@ -832,9 +833,11 @@ body._lock {
 
 @media (max-width: 710px) {
   .header__btm {
-    -webkit-transition: all 0.7s ease-in-out;
-    -o-transition: all 0.7s ease-in-out;
-    transition: all 0.7s ease-in-out;
+    -webkit-transition: -webkit-transform 0.7s ease-in;
+    transition: -webkit-transform 0.7s ease-in;
+    -o-transition: transform 0.7s ease-in;
+    transition: transform 0.7s ease-in;
+    transition: transform 0.7s ease-in, -webkit-transform 0.7s ease-in;
     position: absolute;
     top: 70px;
     left: 0;
@@ -874,9 +877,9 @@ body._lock {
   }
 
   .header__btm._active {
-    -webkit-transition: all 0.7s ease-in-out;
-    -o-transition: all 0.7s ease-in-out;
-    transition: all 0.7s ease-in-out;
+    -webkit-transition: all 0.7s ease-in;
+    -o-transition: all 0.7s ease-in;
+    transition: all 0.7s ease-in;
     -webkit-transform: translate(0, 0);
     -ms-transform: translate(0, 0);
     transform: translate(0, 0);
